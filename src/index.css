@@ -1,58 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* SMMG Research Design System - Legacy Technical Aesthetic */
-    --background: 210 20% 98%;
-    --foreground: 220 30% 12%;
+    /* SMMG Research - Legacy Professional Design */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 12%;
+    --card-foreground: 0 0% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 12%;
+    --popover-foreground: 0 0% 15%;
 
-    /* Deep Navy - Primary brand color */
-    --primary: 220 40% 15%;
-    --primary-foreground: 210 20% 98%;
+    /* Dark navy/black - like Hindenburg header */
+    --primary: 220 20% 12%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Steel Blue - Secondary */
-    --secondary: 215 25% 92%;
-    --secondary-foreground: 220 40% 15%;
+    /* Light gray backgrounds */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
 
-    /* Muted grays for legacy feel */
-    --muted: 210 15% 94%;
-    --muted-foreground: 215 16% 47%;
+    /* Muted grays */
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 45%;
 
-    /* Accent - The blue from "RESEARCH" text */
-    --accent: 215 55% 35%;
-    --accent-foreground: 210 20% 98%;
+    /* Blue accent for links - like Nanex */
+    --accent: 220 80% 45%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
-    --ring: 220 40% 15%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 220 80% 45%;
 
-    --radius: 0.25rem;
+    --radius: 0;
 
-    /* Custom SMMG tokens */
-    --navy-deep: 220 45% 12%;
-    --navy-medium: 215 40% 25%;
-    --blue-research: 215 55% 35%;
-    --steel: 215 15% 65%;
-    --paper: 45 20% 97%;
+    /* Custom tokens */
+    --header-bg: 220 15% 10%;
+    --link-blue: 220 80% 45%;
+    --link-hover: 220 90% 35%;
+    --text-dark: 0 0% 20%;
+    --text-body: 0 0% 35%;
     
-    /* Typography */
-    --font-heading: 'Space Grotesk', system-ui, sans-serif;
-    --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
-    --font-body: 'Space Grotesk', system-ui, sans-serif;
-
     /* Sidebar defaults */
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -65,42 +58,42 @@
   }
 
   .dark {
-    --background: 220 30% 8%;
-    --foreground: 210 20% 95%;
+    --background: 220 15% 8%;
+    --foreground: 0 0% 92%;
 
-    --card: 220 30% 10%;
-    --card-foreground: 210 20% 95%;
+    --card: 220 15% 12%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 220 30% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 210 20% 95%;
-    --primary-foreground: 220 40% 15%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 220 15% 10%;
 
-    --secondary: 220 25% 18%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 220 15% 18%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 220 25% 18%;
-    --muted-foreground: 215 15% 60%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 215 55% 50%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 220 80% 55%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 220 25% 20%;
-    --input: 220 25% 20%;
-    --ring: 215 55% 50%;
+    --border: 220 15% 22%;
+    --input: 220 15% 22%;
+    --ring: 220 80% 55%;
 
-    --sidebar-background: 220 30% 8%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 215 55% 50%;
+    --sidebar-background: 220 15% 8%;
+    --sidebar-foreground: 0 0% 92%;
+    --sidebar-primary: 220 80% 55%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 25% 15%;
-    --sidebar-accent-foreground: 210 20% 95%;
-    --sidebar-border: 220 25% 18%;
-    --sidebar-ring: 215 55% 50%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 0 0% 92%;
+    --sidebar-border: 220 15% 18%;
+    --sidebar-ring: 220 80% 55%;
   }
 }
 
@@ -115,93 +108,48 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-body);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    @apply tracking-tight;
-  }
-
-  code, pre, .font-mono {
-    font-family: var(--font-mono);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: normal;
   }
 }
 
 @layer components {
-  /* Legacy paper texture effect */
-  .paper-texture {
-    background-color: hsl(var(--paper));
-    background-image: 
-      linear-gradient(90deg, transparent 79px, hsl(215 20% 90% / 0.3) 79px, hsl(215 20% 90% / 0.3) 81px, transparent 81px),
-      linear-gradient(hsl(215 20% 90% / 0.2) 0.1em, transparent 0.1em);
-    background-size: 100% 1.5em;
+  /* Header dark bar */
+  .header-dark {
+    background-color: hsl(var(--header-bg));
   }
 
-  /* Technical grid overlay */
-  .grid-overlay {
-    background-image: 
-      linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px);
-    background-size: 40px 40px;
+  /* Simple link style like Nanex */
+  .link-simple {
+    color: hsl(var(--link-blue));
+    text-decoration: underline;
   }
 
-  /* Data terminal effect */
-  .terminal-line::before {
-    content: '>';
-    @apply mr-2 text-accent font-mono;
+  .link-simple:hover {
+    color: hsl(var(--link-hover));
   }
 
-  /* Research document styling */
-  .research-link {
-    @apply relative inline-flex items-center gap-2 font-mono text-sm;
-    @apply text-muted-foreground hover:text-accent transition-colors;
+  /* Nav link style */
+  .nav-link {
+    color: hsl(0 0% 85%);
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 0.5px;
   }
 
-  .research-link::before {
-    content: '[';
-    @apply text-steel;
-  }
-
-  .research-link::after {
-    content: ']';
-    @apply text-steel;
-  }
-
-  /* Section divider */
-  .section-divider {
-    @apply w-full h-px bg-gradient-to-r from-transparent via-border to-transparent;
-  }
-
-  /* Stealth badge */
-  .stealth-badge {
-    @apply inline-flex items-center gap-1.5 px-2 py-0.5;
-    @apply bg-primary/5 border border-primary/20 rounded-sm;
-    @apply font-mono text-xs uppercase tracking-widest text-muted-foreground;
+  .nav-link:hover {
+    color: hsl(0 0% 100%);
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  /* Navy gradient text */
-  .text-gradient-navy {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
-  }
-
-  /* Subtle underline animation */
-  .underline-animate {
-    @apply relative;
-  }
-  
-  .underline-animate::after {
-    content: '';
-    @apply absolute left-0 bottom-0 w-0 h-px bg-accent transition-all duration-300;
-  }
-
-  .underline-animate:hover::after {
-    @apply w-full;
   }
 }

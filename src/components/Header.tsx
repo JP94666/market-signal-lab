@@ -1,67 +1,60 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, Github, ExternalLink } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 import logoFull from "@/assets/logo-full.png";
 
 const navLinks = [
-  { href: "#research", label: "Research" },
-  { href: "#team", label: "Team" },
-  { href: "#publications", label: "Publications" },
+  { href: "/", label: "HOME" },
+  { href: "/about", label: "ABOUT US" },
+  { href: "/research", label: "RESEARCH" },
+  { href: "/articles", label: "ARTICLES" },
+  { href: "/contact", label: "CONTACT US" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <nav className="container mx-auto px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 header-dark">
+      <nav className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.a
-            href="#"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center"
-          >
+          <Link to="/" className="flex items-center">
             <img
               src={logoFull}
               alt="SMMG Research"
-              className="h-10 md:h-12 w-auto"
+              className="h-8 md:h-10 w-auto"
             />
-          </motion.a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link, i) => (
-              <motion.a
+            {navLinks.map((link) => (
+              <Link
                 key={link.href}
-                href={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 * i }}
-                className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors underline-animate"
+                to={link.href}
+                className={`nav-link ${location.pathname === link.href ? 'text-white' : ''}`}
               >
                 {link.label}
-              </motion.a>
+              </Link>
             ))}
-            <motion.a
+            <a
               href="https://github.com/Stealth-Market-Microstructure-Group"
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-              className="flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="nav-link"
+              aria-label="GitHub"
             >
-              <Github className="w-4 h-4" />
-              GitHub
-            </motion.a>
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+              </svg>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-primary"
+            className="md:hidden p-2 text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -71,34 +64,28 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 pb-4 border-t border-border pt-4"
-          >
+          <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.href}
-                  href={link.href}
+                  to={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-mono text-sm uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                  className={`nav-link ${location.pathname === link.href ? 'text-white' : ''}`}
                 >
                   {link.label}
-                </a>
+                </Link>
               ))}
               <a
                 href="https://github.com/Stealth-Market-Microstructure-Group"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
+                className="nav-link flex items-center gap-2"
               >
-                <Github className="w-4 h-4" />
                 GitHub
               </a>
             </div>
-          </motion.div>
+          </div>
         )}
       </nav>
     </header>

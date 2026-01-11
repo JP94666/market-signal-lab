@@ -1,53 +1,35 @@
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
-import logoFull from "@/assets/logo-full.png";
+import { Link } from "react-router-dom";
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="border-t border-border bg-card">
-      <div className="container mx-auto px-6 py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Logo & Description */}
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <img src={logoFull} alt="SMMG Research" className="h-10 w-auto" />
-            <p className="text-sm text-muted-foreground max-w-xs text-center md:text-left">
-              A maverick approach to market microstructure research.
-            </p>
-          </div>
-
-          {/* Links */}
-          <div className="flex items-center gap-6">
-            <a
+    <footer className="border-t border-border py-8">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm" style={{ color: 'hsl(0 0% 45%)' }}>
+            © {new Date().getFullYear()} SMMG Research. All rights reserved.
+          </p>
+          
+          <div className="flex items-center gap-6 text-sm">
+            <Link to="/about" className="link-simple">About</Link>
+            <Link to="/research" className="link-simple">Research</Link>
+            <Link to="/contact" className="link-simple">Contact</Link>
+            <a 
               href="https://github.com/Stealth-Market-Microstructure-Group"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="GitHub"
+              className="link-simple"
             >
-              <Github className="w-5 h-5" />
+              GitHub
             </a>
-            <a
+            <a 
               href="https://www.linkedin.com/company/smmg-research"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label="LinkedIn"
+              className="link-simple"
             >
-              <Linkedin className="w-5 h-5" />
+              LinkedIn
             </a>
           </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-mono text-xs text-muted-foreground">
-            © {currentYear} SMMG Research. Barcelona, Spain.
-          </p>
-          <p className="font-mono text-xs text-muted-foreground">
-            <span className="text-accent">Stealth</span> Market Microstructure Group
-          </p>
         </div>
       </div>
     </footer>
