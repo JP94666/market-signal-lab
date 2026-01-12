@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import logoFull from "@/assets/logo-full.png";
+import logoIcon from "@/assets/logo-icon.jpg";
 
 const navLinks = [
   { href: "/", label: "HOME" },
@@ -13,19 +13,39 @@ const navLinks = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 header-dark">
-      <nav className="max-w-6xl mx-auto px-6 py-4">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white shadow-sm' : 'header-dark'
+      }`}
+    >
+      <nav className="max-w-6xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
+          <Link to="/" className="flex items-center gap-3">
             <img
-              src={logoFull}
-              alt="SMMG Research"
-              className="h-8 md:h-10 w-auto"
+              src={logoIcon}
+              alt="SMMG"
+              className="h-8 w-8 rounded-sm"
             />
+            <span 
+              className={`text-sm font-medium tracking-wide transition-colors duration-300 ${
+                scrolled ? 'text-gray-900' : 'text-white'
+              }`}
+            >
+              SMMG Research
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -34,7 +54,11 @@ export function Header() {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`nav-link ${location.pathname === link.href ? 'text-white' : ''}`}
+                className={`text-xs tracking-wide transition-colors duration-300 ${
+                  scrolled 
+                    ? (location.pathname === link.href ? 'text-gray-900' : 'text-gray-500 hover:text-gray-900')
+                    : (location.pathname === link.href ? 'text-white' : 'text-white/60 hover:text-white')
+                }`}
               >
                 {link.label}
               </Link>
@@ -43,7 +67,9 @@ export function Header() {
               href="https://github.com/Stealth-Market-Microstructure-Group"
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-link"
+              className={`transition-colors duration-300 ${
+                scrolled ? 'text-gray-500 hover:text-gray-900' : 'text-white/60 hover:text-white'
+              }`}
               aria-label="GitHub"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -54,7 +80,9 @@ export function Header() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 text-white"
+            className={`md:hidden p-2 transition-colors duration-300 ${
+              scrolled ? 'text-gray-900' : 'text-white'
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -64,14 +92,20 @@ export function Header() {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
+          <div className={`md:hidden mt-4 pb-4 border-t pt-4 ${
+            scrolled ? 'border-gray-200' : 'border-white/10'
+          }`}>
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`nav-link ${location.pathname === link.href ? 'text-white' : ''}`}
+                  className={`text-xs tracking-wide ${
+                    scrolled 
+                      ? (location.pathname === link.href ? 'text-gray-900' : 'text-gray-500')
+                      : (location.pathname === link.href ? 'text-white' : 'text-white/60')
+                  }`}
                 >
                   {link.label}
                 </Link>
@@ -80,7 +114,9 @@ export function Header() {
                 href="https://github.com/Stealth-Market-Microstructure-Group"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-link flex items-center gap-2"
+                className={`text-xs tracking-wide flex items-center gap-2 ${
+                  scrolled ? 'text-gray-500' : 'text-white/60'
+                }`}
               >
                 GitHub
               </a>

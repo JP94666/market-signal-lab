@@ -1,20 +1,22 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
+// To add a new research paper, add it to the TOP of this array
+// Format: { date: "MM-DD-YYYY" or "In Progress", title: "...", link: "...", venue: "Zenodo/SMMG Research", highlight: true/false }
 const researchPapers = [
+  {
+    date: "2025",
+    title: "Hot Potato Effect in a CLOB Within the Same Cent: An Agent-Based Inventory Model",
+    link: "https://zenodo.org/records/16760452",
+    venue: "Zenodo",
+    highlight: true,
+  },
   {
     date: "08-19-2025",
     title: "Foundations of Dealer Markets: A Replication and Analysis of the Treynor Model",
-    link: "https://zenodo.org/records/13345447",
+    link: "https://zenodo.org/records/16921558",
     venue: "Zenodo",
     highlight: false,
-  },
-  {
-    date: "In Progress",
-    title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
-    link: "#",
-    venue: "SMMG Research",
-    highlight: true,
   },
   {
     date: "In Progress",
@@ -25,6 +27,7 @@ const researchPapers = [
   },
 ];
 
+// To add a new GitHub repo, add it to the TOP of this array
 const openSourceProjects = [
   {
     date: "Jul 2025",
@@ -48,8 +51,8 @@ const Research = () => {
       {/* Dark hero section */}
       <section className="bg-primary text-primary-foreground py-16 pt-32">
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl mb-2">Research</h1>
-          <p className="text-sm text-primary-foreground/60">
+          <h1 className="text-2xl md:text-3xl mb-2">Research</h1>
+          <p className="text-sm" style={{ color: 'hsl(0 0% 60%)' }}>
             White Papers and Research Publications
           </p>
         </div>
@@ -59,7 +62,7 @@ const Research = () => {
       <main className="max-w-5xl mx-auto px-6 py-12">
         {/* Research Papers Section */}
         <section className="mb-16">
-          <h2 className="text-xl border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
             Research Papers
           </h2>
           
@@ -89,10 +92,10 @@ const Research = () => {
           </table>
         </section>
 
-        {/* Open Source Projects Section */}
+        {/* Open Source Section */}
         <section>
-          <h2 className="text-xl border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
-            Open Source Projects
+          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+            Open Source
           </h2>
           
           <table className="w-full text-sm">

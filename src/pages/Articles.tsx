@@ -1,29 +1,22 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
+// To add a new article, add it to the TOP of this array
+// Format: { date: "YYYY", title: "...", description: "...", link: "...", highlight: true/false }
 const articles = [
   {
     date: "2025",
-    title: "LIMIT ≠ PASSIVE — The Myth That Shakes Market Microstructure",
-    description: "Our empirical validation showing the shift in understanding passive liquidity providers",
-    link: "#",
+    title: "Financial research has a problem — and Marcos López de Prado explains it perfectly",
+    description: "Most financial models look great on paper — but collapse when they meet real markets",
+    link: "https://www.linkedin.com/pulse/financial-research-has-problem-marcos-l%C3%B3pez-de-prado-explains-m--z39ue/?trackingId=vRUPQDp9an5eGQ4gb0Zp6w%3D%3D",
     highlight: true,
   },
   {
     date: "2025",
-    title: "From the $11.5M Position Iceberg and the Nanex/Flash Crash Friction",
-    description: "How decade-old ideas began and the empirical dissection proving LIMIT ≠ PASSIVE",
-    link: "#",
+    title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
+    description: "Our empirical validation showing the shift in understanding passive liquidity providers",
+    link: "https://www.linkedin.com/pulse/myths-market-microstructure-research-i-passive-liquidity-david-m--rezrf/?trackingId=stsIwxriQbKflzXOWyw8OA%3D%3D",
     highlight: false,
-  },
-];
-
-const newsMedia = [
-  {
-    date: "2025",
-    title: "Financial research has a problem — Marcos López de Prado explains it perfectly",
-    source: "LinkedIn",
-    link: "#",
   },
 ];
 
@@ -35,8 +28,8 @@ const Articles = () => {
       {/* Dark hero section */}
       <section className="bg-primary text-primary-foreground py-16 pt-32">
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl mb-2">Articles & Updates</h1>
-          <p className="text-sm text-primary-foreground/60">
+          <h1 className="text-2xl md:text-3xl mb-2">Articles & Updates</h1>
+          <p className="text-sm" style={{ color: 'hsl(0 0% 60%)' }}>
             Market observations, research notes, and commentary
           </p>
         </div>
@@ -45,21 +38,23 @@ const Articles = () => {
       {/* Content */}
       <main className="max-w-5xl mx-auto px-6 py-12">
         {/* Featured Articles */}
-        <section className="mb-16">
-          <h2 className="text-xl border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
-            Featured Articles
+        <section>
+          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+            Articles
           </h2>
           
           <div className="space-y-6">
             {articles.map((article, i) => (
-              <div key={i} className="border-l-4 border-accent pl-4">
+              <div key={i} className="border-l-2 border-accent pl-4">
                 <span className="text-xs" style={{ color: 'hsl(0 0% 45%)' }}>
                   {article.date}
                 </span>
                 <h3 className="mt-1">
                   <a 
                     href={article.link}
-                    className={`link-simple text-lg ${article.highlight ? 'font-semibold' : ''}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`link-simple ${article.highlight ? 'font-semibold' : ''}`}
                   >
                     {article.title}
                   </a>
@@ -70,38 +65,6 @@ const Articles = () => {
               </div>
             ))}
           </div>
-        </section>
-
-        {/* News & Media */}
-        <section>
-          <h2 className="text-xl border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
-            News & Commentary
-          </h2>
-          
-          <table className="w-full text-sm">
-            <tbody>
-              {newsMedia.map((item, i) => (
-                <tr key={i} className="border-b border-border">
-                  <td className="py-3 pr-4 whitespace-nowrap align-top" style={{ color: 'hsl(0 0% 45%)', width: '120px' }}>
-                    {item.date}
-                  </td>
-                  <td className="py-3">
-                    <a 
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-simple"
-                    >
-                      {item.title}
-                    </a>
-                    <span className="text-xs ml-2" style={{ color: 'hsl(0 0% 55%)' }}>
-                      [{item.source}]
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
         </section>
       </main>
 

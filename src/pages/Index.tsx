@@ -4,30 +4,30 @@ import { Footer } from "@/components/Footer";
 
 const recentResearch = [
   {
-    date: "08-19-2025",
-    title: "Foundations of Dealer Markets: A Replication and Analysis of the Treynor Model",
-    link: "https://zenodo.org/records/13345447",
-    highlight: false,
+    date: "2025",
+    title: "Hot Potato Effect in a CLOB Within the Same Cent: An Agent-Based Inventory Model",
+    link: "https://zenodo.org/records/16760452",
+    highlight: true,
   },
   {
-    date: "In Progress",
-    title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
-    link: "#",
-    highlight: true,
+    date: "08-19-2025",
+    title: "Foundations of Dealer Markets: A Replication and Analysis of the Treynor Model",
+    link: "https://zenodo.org/records/16921558",
+    highlight: false,
   },
 ];
 
 const recentArticles = [
   {
     date: "2025",
-    title: "LIMIT ≠ PASSIVE — The Myth That Shakes Market Microstructure",
-    link: "#",
+    title: "Financial research has a problem — and Marcos López de Prado explains it perfectly",
+    link: "https://www.linkedin.com/pulse/financial-research-has-problem-marcos-l%C3%B3pez-de-prado-explains-m--z39ue/?trackingId=vRUPQDp9an5eGQ4gb0Zp6w%3D%3D",
     highlight: true,
   },
   {
     date: "2025",
-    title: "From the $11.5M Position Iceberg and the Nanex/Flash Crash Friction",
-    link: "#",
+    title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
+    link: "https://www.linkedin.com/pulse/myths-market-microstructure-research-i-passive-liquidity-david-m--rezrf/?trackingId=stsIwxriQbKflzXOWyw8OA%3D%3D",
     highlight: false,
   },
 ];
@@ -49,16 +49,15 @@ const Index = () => {
       <Header />
       
       {/* Dark hero section */}
-      <section className="bg-primary text-primary-foreground py-20 pt-36">
+      <section className="bg-primary text-primary-foreground py-16 pt-32">
         <div className="max-w-5xl mx-auto px-6">
-          <p className="text-sm mb-4" style={{ color: 'hsl(0 0% 60%)' }}>
-            Stealth Market Microstructure Group
-          </p>
-          <h1 className="text-2xl md:text-3xl leading-relaxed max-w-3xl">
-            A maverick research lab operating at the intersection of simulation and market microstructure. 
-            Leveraging <strong>60TB+</strong> of raw data and HPC workflows to reveal what conventional 
-            analysis cannot.
+          <h1 className="text-2xl md:text-3xl mb-4" style={{ fontWeight: 400 }}>
+            SMMG Research
           </h1>
+          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: 'hsl(0 0% 70%)' }}>
+            A maverick research lab at the intersection of simulation and market microstructure. 
+            60TB+ of raw ITCH data. HPC workflows. Revealing what conventional analysis cannot.
+          </p>
         </div>
       </section>
 
@@ -68,7 +67,7 @@ const Index = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {/* Research Column */}
           <div>
-            <h2 className="text-lg border-b-2 border-accent pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
               Research
             </h2>
             <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
@@ -98,7 +97,7 @@ const Index = () => {
 
           {/* Articles Column */}
           <div>
-            <h2 className="text-lg border-b-2 border-accent pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
               Articles
             </h2>
             <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
@@ -112,6 +111,8 @@ const Index = () => {
                   </span>
                   <a 
                     href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`link-simple text-sm ${item.highlight ? 'font-semibold' : ''}`}
                   >
                     {item.title}
@@ -126,11 +127,11 @@ const Index = () => {
 
           {/* Open Source Column */}
           <div>
-            <h2 className="text-lg border-b-2 border-accent pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
               Open Source
             </h2>
             <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
-              GitHub Projects
+              GitHub
             </p>
             <ul className="space-y-3">
               {openSource.map((item, i) => (
@@ -159,11 +160,11 @@ const Index = () => {
 
         {/* About snippet */}
         <section className="mt-16 pt-8 border-t border-border">
-          <p className="max-w-2xl" style={{ color: 'hsl(0 0% 35%)' }}>
-            Our work focuses on analyzing full depth-of-book (ITCH/EOBI) data to uncover novel 
-            patterns in order book dynamics. We build terabyte-scale infrastructure to power our 
-            analysis and translate our research on Market Microstructure into high-impact systems 
-            that directly address real-world market behavior.
+          <p className="max-w-2xl text-sm" style={{ color: 'hsl(0 0% 35%)' }}>
+            Our core advantage: a deterministic ITCH-based limit order book simulator designed 
+            for event-level analysis. This matching engine emulator enables controlled experimentation 
+            on order flow, agent interaction, and inventory dynamics while preserving strict 
+            price–time priority and causal event ordering.
           </p>
           <Link to="/about" className="link-simple text-sm mt-4 inline-block">
             Learn more about us →
