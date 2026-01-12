@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { toast } = useToast();
@@ -24,15 +25,29 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // For now, show a message that backend is needed
-    // This will be connected to an edge function later
-    toast({
-      title: "Message received",
-      description: "Thank you for contacting us. We will respond shortly.",
-    });
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: formData
+      });
 
-    setFormData({ name: "", email: "", subject: "", message: "" });
-    setIsSubmitting(false);
+      if (error) throw error;
+
+      toast({
+        title: "Message sent",
+        description: "Thank you for contacting us. We will respond shortly.",
+      });
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,9 +55,9 @@ const Contact = () => {
       <Header />
       
       {/* Dark hero section */}
-      <section className="bg-primary text-primary-foreground py-16 pt-32">
-        <div className="max-w-3xl mx-auto px-6">
-          <h1 className="text-3xl md:text-4xl mb-2">Contact Us</h1>
+      <section className="bg-primary text-primary-foreground py-12 sm:py-16 pt-24 sm:pt-32">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl mb-2">Contact Us</h1>
           <p className="text-sm text-primary-foreground/60">
             Get in touch with SMMG Research
           </p>
@@ -50,13 +65,9 @@ const Contact = () => {
       </section>
 
       {/* Content */}
-      <main className="max-w-3xl mx-auto px-6 py-12">
+      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <p className="mb-8" style={{ color: 'hsl(0 0% 35%)' }}>
           Please send tips, feedback, and questions using the contact form below.
-        </p>
-
-        <p className="mb-8 text-sm" style={{ color: 'hsl(0 0% 45%)' }}>
-          (Or use the contact form below)
         </p>
 
         <form onSubmit={handleSubmit} className="max-w-lg space-y-6">
@@ -70,7 +81,7 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-border bg-background focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
           </div>
 
@@ -84,7 +95,7 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-3 py-2 border border-border bg-background focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
           </div>
 
@@ -97,7 +108,7 @@ const Contact = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="w-full px-3 py-2 border border-border bg-background focus:outline-none focus:border-accent"
+              className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
           </div>
 
@@ -111,15 +122,14 @@ const Contact = () => {
               onChange={handleChange}
               rows={8}
               required
-              className="w-full px-3 py-2 border border-border bg-background focus:outline-none focus:border-accent resize-y"
+              className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent resize-y"
             />
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="px-6 py-2 border border-foreground bg-background hover:bg-secondary transition-colors text-sm"
-            style={{ color: 'hsl(0 0% 20%)' }}
+            className="px-6 py-2 border border-foreground bg-background text-foreground hover:bg-secondary transition-colors text-sm"
           >
             {isSubmitting ? "SENDING..." : "SEND"}
           </button>

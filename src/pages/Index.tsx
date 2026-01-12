@@ -41,6 +41,10 @@ const openSource = [
     title: "Imbalance-signal-generation-using-DMA-screens",
     link: "https://github.com/Stealth-Market-Microstructure-Group/Imbalance-signal-generation-using-DMA-screens",
   },
+  {
+    title: "spoofing-experiment-large-event",
+    link: "https://github.com/Stealth-Market-Microstructure-Group/spoofing-experiment-large-event",
+  },
 ];
 
 const Index = () => {
@@ -49,12 +53,12 @@ const Index = () => {
       <Header />
       
       {/* Dark hero section */}
-      <section className="bg-primary text-primary-foreground py-16 pt-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-2xl md:text-3xl mb-4" style={{ fontWeight: 400 }}>
+      <section className="bg-primary text-primary-foreground py-12 sm:py-16 pt-24 sm:pt-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <h1 className="text-xl sm:text-2xl md:text-3xl mb-4" style={{ fontWeight: 400 }}>
             SMMG Research
           </h1>
-          <p className="text-sm leading-relaxed max-w-2xl" style={{ color: 'hsl(0 0% 70%)' }}>
+          <p className="text-sm leading-relaxed max-w-2xl text-primary-foreground/70">
             A maverick research lab at the intersection of simulation and market microstructure. 
             60TB+ of raw ITCH data. HPC workflows. Revealing what conventional analysis cannot.
           </p>
@@ -62,21 +66,21 @@ const Index = () => {
       </section>
 
       {/* Main Content */}
-      <main className="max-w-5xl mx-auto px-6 py-12">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Three column layout like Nanex */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Research Column */}
           <div>
-            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+            <h2 className="text-base border-b border-border pb-2 mb-4 text-foreground">
               Research
             </h2>
-            <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
+            <p className="text-xs mb-4 text-muted-foreground">
               White Papers and Publications
             </p>
             <ul className="space-y-3">
               {recentResearch.map((item, i) => (
                 <li key={i}>
-                  <span className="text-xs block" style={{ color: 'hsl(0 0% 55%)' }}>
+                  <span className="text-xs block text-muted-foreground">
                     {item.date}
                   </span>
                   <a 
@@ -97,16 +101,16 @@ const Index = () => {
 
           {/* Articles Column */}
           <div>
-            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+            <h2 className="text-base border-b border-border pb-2 mb-4 text-foreground">
               Articles
             </h2>
-            <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
+            <p className="text-xs mb-4 text-muted-foreground">
               Notes and Commentary
             </p>
             <ul className="space-y-3">
               {recentArticles.map((item, i) => (
                 <li key={i}>
-                  <span className="text-xs block" style={{ color: 'hsl(0 0% 55%)' }}>
+                  <span className="text-xs block text-muted-foreground">
                     {item.date}
                   </span>
                   <a 
@@ -126,11 +130,11 @@ const Index = () => {
           </div>
 
           {/* Open Source Column */}
-          <div>
-            <h2 className="text-base border-b border-border pb-2 mb-4" style={{ color: 'hsl(0 0% 20%)' }}>
+          <div className="sm:col-span-2 md:col-span-1">
+            <h2 className="text-base border-b border-border pb-2 mb-4 text-foreground">
               Open Source
             </h2>
-            <p className="text-xs mb-4" style={{ color: 'hsl(0 0% 55%)' }}>
+            <p className="text-xs mb-4 text-muted-foreground">
               GitHub
             </p>
             <ul className="space-y-3">
@@ -159,8 +163,8 @@ const Index = () => {
         </div>
 
         {/* About snippet */}
-        <section className="mt-16 pt-8 border-t border-border">
-          <p className="max-w-2xl text-sm" style={{ color: 'hsl(0 0% 35%)' }}>
+        <section className="mt-12 sm:mt-16 pt-8 border-t border-border">
+          <p className="max-w-2xl text-sm text-muted-foreground">
             Our core advantage: a deterministic ITCH-based limit order book simulator designed 
             for event-level analysis. This matching engine emulator enables controlled experimentation 
             on order flow, agent interaction, and inventory dynamics while preserving strict 

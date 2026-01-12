@@ -30,6 +30,12 @@ const researchPapers = [
 // To add a new GitHub repo, add it to the TOP of this array
 const openSourceProjects = [
   {
+    date: "2025",
+    title: "spoofing-experiment-large-event",
+    description: "Spoofing research experiment with large event analysis",
+    link: "https://github.com/Stealth-Market-Microstructure-Group/spoofing-experiment-large-event",
+  },
+  {
     date: "Jul 2025",
     title: "NASDAQ-ITCH-Simulation-Research-Hot-Potato-effect-in-Same-Cent",
     description: "Market Simulation of agent showing hot potato transfer in same cent, sim using ITCH NASDAQ tick data",
@@ -49,79 +55,83 @@ const Research = () => {
       <Header />
       
       {/* Dark hero section */}
-      <section className="bg-primary text-primary-foreground py-16 pt-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-2xl md:text-3xl mb-2">Research</h1>
-          <p className="text-sm" style={{ color: 'hsl(0 0% 60%)' }}>
+      <section className="bg-primary text-primary-foreground py-12 sm:py-16 pt-24 sm:pt-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <h1 className="text-xl sm:text-2xl md:text-3xl mb-2">Research</h1>
+          <p className="text-sm text-primary-foreground/60">
             White Papers and Research Publications
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-6 py-12">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Research Papers Section */}
         <section className="mb-16">
-          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+          <h2 className="text-lg border-b border-border pb-2 mb-6 text-foreground">
             Research Papers
           </h2>
           
-          <table className="w-full text-sm">
-            <tbody>
-              {researchPapers.map((paper, i) => (
-                <tr key={i} className="border-b border-border">
-                  <td className="py-3 pr-4 whitespace-nowrap align-top" style={{ color: 'hsl(0 0% 45%)', width: '120px' }}>
-                    {paper.date}
-                  </td>
-                  <td className="py-3">
-                    <a 
-                      href={paper.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`link-simple ${paper.highlight ? 'font-semibold' : ''}`}
-                    >
-                      {paper.title}
-                    </a>
-                    <span className="text-xs ml-2" style={{ color: 'hsl(0 0% 55%)' }}>
-                      [{paper.venue}]
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <tbody>
+                {researchPapers.map((paper, i) => (
+                  <tr key={i} className="border-b border-border">
+                    <td className="py-3 pr-4 whitespace-nowrap align-top text-muted-foreground" style={{ width: '120px' }}>
+                      {paper.date}
+                    </td>
+                    <td className="py-3">
+                      <a 
+                        href={paper.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`link-simple ${paper.highlight ? 'font-semibold' : ''}`}
+                      >
+                        {paper.title}
+                      </a>
+                      <span className="text-xs ml-2 text-muted-foreground">
+                        [{paper.venue}]
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         {/* Open Source Section */}
         <section>
-          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+          <h2 className="text-lg border-b border-border pb-2 mb-6 text-foreground">
             Open Source
           </h2>
           
-          <table className="w-full text-sm">
-            <tbody>
-              {openSourceProjects.map((project, i) => (
-                <tr key={i} className="border-b border-border">
-                  <td className="py-3 pr-4 whitespace-nowrap align-top" style={{ color: 'hsl(0 0% 45%)', width: '120px' }}>
-                    {project.date}
-                  </td>
-                  <td className="py-3">
-                    <a 
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-simple"
-                    >
-                      {project.title}
-                    </a>
-                    <p className="mt-1" style={{ color: 'hsl(0 0% 45%)' }}>
-                      {project.description}
-                    </p>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <tbody>
+                {openSourceProjects.map((project, i) => (
+                  <tr key={i} className="border-b border-border">
+                    <td className="py-3 pr-4 whitespace-nowrap align-top text-muted-foreground" style={{ width: '120px' }}>
+                      {project.date}
+                    </td>
+                    <td className="py-3">
+                      <a 
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-simple"
+                      >
+                        {project.title}
+                      </a>
+                      <p className="mt-1 text-muted-foreground">
+                        {project.description}
+                      </p>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       </main>
 

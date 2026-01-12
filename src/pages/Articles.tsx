@@ -26,27 +26,27 @@ const Articles = () => {
       <Header />
       
       {/* Dark hero section */}
-      <section className="bg-primary text-primary-foreground py-16 pt-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-2xl md:text-3xl mb-2">Articles & Updates</h1>
-          <p className="text-sm" style={{ color: 'hsl(0 0% 60%)' }}>
+      <section className="bg-primary text-primary-foreground py-12 sm:py-16 pt-24 sm:pt-32">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <h1 className="text-xl sm:text-2xl md:text-3xl mb-2">Articles & Updates</h1>
+          <p className="text-sm text-primary-foreground/60">
             Market observations, research notes, and commentary
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <main className="max-w-5xl mx-auto px-6 py-12">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
         {/* Featured Articles */}
         <section>
-          <h2 className="text-lg border-b border-border pb-2 mb-6" style={{ color: 'hsl(0 0% 20%)' }}>
+          <h2 className="text-lg border-b border-border pb-2 mb-6 text-foreground">
             Articles
           </h2>
           
           <div className="space-y-6">
             {articles.map((article, i) => (
               <div key={i} className="border-l-2 border-accent pl-4">
-                <span className="text-xs" style={{ color: 'hsl(0 0% 45%)' }}>
+                <span className="text-xs text-muted-foreground">
                   {article.date}
                 </span>
                 <h3 className="mt-1">
@@ -59,7 +59,7 @@ const Articles = () => {
                     {article.title}
                   </a>
                 </h3>
-                <p className="mt-1 text-sm" style={{ color: 'hsl(0 0% 45%)' }}>
+                <p className="mt-1 text-sm text-muted-foreground">
                   {article.description}
                 </p>
               </div>
