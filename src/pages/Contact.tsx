@@ -3,6 +3,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Input validation schema
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100, "Name must be less than 100 characters"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  subject: z.string().trim().max(200, "Subject must be less than 200 characters").optional().default(""),
+  message: z.string().trim().min(1, "Message is required").max(5000, "Message must be less than 5000 characters"),
+});
 
 const Contact = () => {
   const { toast } = useToast();
@@ -13,21 +22,47 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrors({});
+    
+    // Validate input
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.errors.forEach((err) => {
+        if (err.path[0]) {
+          fieldErrors[err.path[0] as string] = err.message;
+        }
+      });
+      setErrors(fieldErrors);
+      toast({
+        title: "Validation Error",
+        description: "Please check your input and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+        body: result.data
       });
 
       if (error) throw error;
@@ -39,7 +74,6 @@ const Contact = () => {
 
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error: any) {
-      console.error("Error sending message:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",
@@ -81,8 +115,10 @@ const Contact = () => {
               value={formData.name}
               onChange={handleChange}
               required
+              maxLength={100}
               className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
+            {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
           </div>
 
           <div>
@@ -95,8 +131,10 @@ const Contact = () => {
               value={formData.email}
               onChange={handleChange}
               required
+              maxLength={255}
               className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
+            {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
           </div>
 
           <div>
@@ -108,6 +146,7 @@ const Contact = () => {
               name="subject"
               value={formData.subject}
               onChange={handleChange}
+              maxLength={200}
               className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent"
             />
           </div>
@@ -122,8 +161,10 @@ const Contact = () => {
               onChange={handleChange}
               rows={8}
               required
+              maxLength={5000}
               className="w-full px-3 py-2 border border-border bg-background text-foreground focus:outline-none focus:border-accent resize-y"
             />
+            {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
           </div>
 
           <button
