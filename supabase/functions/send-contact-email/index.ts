@@ -11,8 +11,93 @@ const corsHeaders = {
 interface ContactEmailRequest {
   name: string;
   email: string;
-  subject: string;
+  subject?: string;
   message: string;
+}
+
+// Simple in-memory rate limiting (per IP)
+const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const RATE_LIMIT_MAX = 5; // Max 5 requests
+const RATE_LIMIT_WINDOW = 60 * 1000; // Per minute (60 seconds)
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  
+  if (!record || now > record.resetTime) {
+    rateLimitMap.set(ip, { count: 1, resetTime: now + RATE_LIMIT_WINDOW });
+    return true;
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX) {
+    return false;
+  }
+  
+  record.count++;
+  return true;
+}
+
+// Input validation
+function validateInput(data: any): { valid: boolean; error?: string; sanitized?: ContactEmailRequest } {
+  if (!data || typeof data !== 'object') {
+    return { valid: false, error: 'Invalid request body' };
+  }
+
+  const { name, email, subject, message } = data;
+
+  // Validate name
+  if (!name || typeof name !== 'string' || name.trim().length === 0) {
+    return { valid: false, error: 'Name is required' };
+  }
+  if (name.length > 100) {
+    return { valid: false, error: 'Name must be less than 100 characters' };
+  }
+
+  // Validate email
+  if (!email || typeof email !== 'string') {
+    return { valid: false, error: 'Email is required' };
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    return { valid: false, error: 'Invalid email address' };
+  }
+  if (email.length > 255) {
+    return { valid: false, error: 'Email must be less than 255 characters' };
+  }
+
+  // Validate subject (optional)
+  if (subject && typeof subject !== 'string') {
+    return { valid: false, error: 'Invalid subject format' };
+  }
+  if (subject && subject.length > 200) {
+    return { valid: false, error: 'Subject must be less than 200 characters' };
+  }
+
+  // Validate message
+  if (!message || typeof message !== 'string' || message.trim().length === 0) {
+    return { valid: false, error: 'Message is required' };
+  }
+  if (message.length > 5000) {
+    return { valid: false, error: 'Message must be less than 5000 characters' };
+  }
+
+  // Sanitize HTML to prevent XSS
+  const sanitize = (str: string) => str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+
+  return {
+    valid: true,
+    sanitized: {
+      name: sanitize(name.trim()),
+      email: email.trim().toLowerCase(),
+      subject: subject ? sanitize(subject.trim()) : '',
+      message: sanitize(message.trim()),
+    }
+  };
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -21,8 +106,40 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Get client IP for rate limiting
+  const clientIP = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || 
+                   req.headers.get("cf-connecting-ip") || 
+                   "unknown";
+
+  // Check rate limit
+  if (!checkRateLimit(clientIP)) {
+    console.log(`Rate limit exceeded for IP: ${clientIP}`);
+    return new Response(
+      JSON.stringify({ error: "Too many requests. Please try again later." }),
+      {
+        status: 429,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      }
+    );
+  }
+
   try {
-    const { name, email, subject, message }: ContactEmailRequest = await req.json();
+    const body = await req.json();
+    
+    // Validate and sanitize input
+    const validation = validateInput(body);
+    if (!validation.valid || !validation.sanitized) {
+      console.log("Validation failed:", validation.error);
+      return new Response(
+        JSON.stringify({ error: validation.error }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
+
+    const { name, email, subject, message } = validation.sanitized;
 
     console.log("Received contact form submission:", { name, email, subject });
 
