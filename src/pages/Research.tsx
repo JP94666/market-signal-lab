@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 // Format: { date: "MM-DD-YYYY" or "In Progress", title: "...", link: "...", venue: "Zenodo/SMMG Research", highlight: true/false }
 const researchPapers = [
   {
-    date: "2025",
+    date: "Aug 7, 2025",
     title: "Hot Potato Effect in a CLOB Within the Same Cent: An Agent-Based Inventory Model",
     link: "https://zenodo.org/records/16760452",
     venue: "Zenodo",
     highlight: true,
   },
   {
-    date: "08-19-2025",
+    date: "Aug 19, 2025",
     title: "Foundations of Dealer Markets: A Replication and Analysis of the Treynor Model",
     link: "https://zenodo.org/records/16921558",
     venue: "Zenodo",
@@ -28,21 +28,22 @@ const researchPapers = [
 ];
 
 // To add a new GitHub repo, add it to the TOP of this array
+// Use "Jan 2026 – Ongoing" format for active research, or "Jul 2025 – Ongoing" for continuing projects
 const openSourceProjects = [
   {
-    date: "2025",
+    date: "Jan 2026 – Ongoing",
     title: "spoofing-experiment-large-event",
     description: "Spoofing research experiment with large event analysis",
     link: "https://github.com/Stealth-Market-Microstructure-Group/spoofing-experiment-large-event",
   },
   {
-    date: "Jul 2025",
+    date: "Jul 2025 – Ongoing",
     title: "NASDAQ-ITCH-Simulation-Research-Hot-Potato-effect-in-Same-Cent",
     description: "Market Simulation of agent showing hot potato transfer in same cent, sim using ITCH NASDAQ tick data",
     link: "https://github.com/Stealth-Market-Microstructure-Group/NASDAQ-ITCH-Simulation-Research-Hot-Potato-effect-in-Same-Cent",
   },
   {
-    date: "Sep 2025",
+    date: "Sep 2025 – Ongoing",
     title: "Imbalance-signal-generation-using-DMA-screens",
     description: "Inferring order-flow imbalance from DMA trading screens using OCR (Tesseract)",
     link: "https://github.com/Stealth-Market-Microstructure-Group/Imbalance-signal-generation-using-DMA-screens",

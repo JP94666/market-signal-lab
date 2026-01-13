@@ -5,14 +5,14 @@ import { Footer } from "@/components/Footer";
 // Format: { date: "YYYY", title: "...", description: "...", link: "...", highlight: true/false }
 const articles = [
   {
-    date: "2025",
+    date: "Dec 17, 2025",
     title: "Financial research has a problem — and Marcos López de Prado explains it perfectly",
     description: "Most financial models look great on paper — but collapse when they meet real markets",
     link: "https://www.linkedin.com/pulse/financial-research-has-problem-marcos-l%C3%B3pez-de-prado-explains-m--z39ue/?trackingId=vRUPQDp9an5eGQ4gb0Zp6w%3D%3D",
     highlight: true,
   },
   {
-    date: "2025",
+    date: "Mar 11, 2024",
     title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
     description: "Our empirical validation showing the shift in understanding passive liquidity providers",
     link: "https://www.linkedin.com/pulse/myths-market-microstructure-research-i-passive-liquidity-david-m--rezrf/?trackingId=stsIwxriQbKflzXOWyw8OA%3D%3D",

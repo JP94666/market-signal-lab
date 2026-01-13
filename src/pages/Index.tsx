@@ -4,13 +4,13 @@ import { Footer } from "@/components/Footer";
 
 const recentResearch = [
   {
-    date: "2025",
+    date: "Aug 7, 2025",
     title: "Hot Potato Effect in a CLOB Within the Same Cent: An Agent-Based Inventory Model",
     link: "https://zenodo.org/records/16760452",
     highlight: true,
   },
   {
-    date: "08-19-2025",
+    date: "Aug 19, 2025",
     title: "Foundations of Dealer Markets: A Replication and Analysis of the Treynor Model",
     link: "https://zenodo.org/records/16921558",
     highlight: false,
@@ -19,13 +19,13 @@ const recentResearch = [
 
 const recentArticles = [
   {
-    date: "2025",
+    date: "Dec 17, 2025",
     title: "Financial research has a problem — and Marcos López de Prado explains it perfectly",
     link: "https://www.linkedin.com/pulse/financial-research-has-problem-marcos-l%C3%B3pez-de-prado-explains-m--z39ue/?trackingId=vRUPQDp9an5eGQ4gb0Zp6w%3D%3D",
     highlight: true,
   },
   {
-    date: "2025",
+    date: "Mar 11, 2024",
     title: "Myths in Market Microstructure Research I: Passive Liquidity Providers",
     link: "https://www.linkedin.com/pulse/myths-market-microstructure-research-i-passive-liquidity-david-m--rezrf/?trackingId=stsIwxriQbKflzXOWyw8OA%3D%3D",
     highlight: false,
@@ -60,7 +60,7 @@ const Index = () => {
           </h1>
           <p className="text-sm leading-relaxed max-w-2xl text-primary-foreground/70">
             A maverick research lab at the intersection of simulation and market microstructure. 
-            60TB+ of raw ITCH data. HPC workflows. Revealing what conventional analysis cannot.
+            60TB+ of raw ITCH/EUREX data. HPC workflows. Revealing what conventional analysis cannot.
           </p>
         </div>
       </section>

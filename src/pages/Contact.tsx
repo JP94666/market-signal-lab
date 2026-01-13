@@ -66,13 +66,13 @@ const Contact = () => {
 
       {/* Content */}
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <p className="mb-8" style={{ color: 'hsl(0 0% 35%)' }}>
-          Please send tips, feedback, and questions using the contact form below.
+        <p className="mb-8 text-muted-foreground">
+          Please send tips, feedback, and questions using the contact form.
         </p>
 
         <form onSubmit={handleSubmit} className="max-w-lg space-y-6">
           <div>
-            <label className="block text-sm mb-2" style={{ color: 'hsl(0 0% 20%)' }}>
+            <label className="block text-sm mb-2 text-foreground font-medium">
               Your Name (required)
             </label>
             <input
@@ -86,7 +86,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm mb-2" style={{ color: 'hsl(0 0% 20%)' }}>
+            <label className="block text-sm mb-2 text-foreground font-medium">
               Your Email (required)
             </label>
             <input
@@ -100,7 +100,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm mb-2" style={{ color: 'hsl(0 0% 20%)' }}>
+            <label className="block text-sm mb-2 text-foreground font-medium">
               Subject
             </label>
             <input
@@ -113,7 +113,7 @@ const Contact = () => {
           </div>
 
           <div>
-            <label className="block text-sm mb-2" style={{ color: 'hsl(0 0% 20%)' }}>
+            <label className="block text-sm mb-2 text-foreground font-medium">
               Your Message
             </label>
             <textarea

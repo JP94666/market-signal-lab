@@ -40,8 +40,8 @@ const About = () => {
           
           <ul className="list-disc pl-6 space-y-2 mb-8 text-muted-foreground">
             <li>Full depth-of-book ITCH/EOBI data analysis</li>
-            <li>Order book dynamics and liquidity research</li>
-            <li>High-frequency trading pattern recognition</li>
+            <li>Order book dynamics and liquidity queue research</li>
+            <li>Modeling and detection of spoofing and layering strategies</li>
             <li>Agent-based modeling of market behavior</li>
             <li>Event-level inventory transfer simulation</li>
           </ul>
@@ -60,7 +60,7 @@ const About = () => {
                 Barcelona, Universitat de Barcelona.
               </p>
               <a 
-                href="https://www.linkedin.com/in/david-m-trading"
+                href="https://www.linkedin.com/in/david-m-27693ab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-simple text-sm mt-2 inline-block"
