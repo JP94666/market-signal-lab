@@ -76,9 +76,8 @@ const About = () => {
               </p>
               <p className="text-sm text-muted-foreground">
                 Lead architect of the research infrastructure and primary builder of the market 
-                emulator/simulator. Spearheading market microstructure research using terabytes 
-                of full depth-of-book (ITCH) data. Overseeing the overall architecture and 
-                simulation engine development.
+                emulator/simulator. Overseeing the overall architecture and simulation engine 
+                development.
               </p>
               <a 
                 href="https://www.linkedin.com/in/pankaj-jat-666p"
@@ -93,7 +92,7 @@ const About = () => {
             <div className="border-l-2 border-border pl-4">
               <h3 className="text-base mb-1 text-foreground">Bhavik P.</h3>
               <p className="text-sm mb-2 text-muted-foreground">
-                Data Engineer
+                Data & Infrastructure Engineer
               </p>
               <p className="text-sm text-muted-foreground">
                 The person behind building and maintaining the data pipelines. Responsible for 
