@@ -10,14 +10,14 @@ export function Footer() {
           </p>
           
           <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 text-sm">
-            <Link to="/about" className="link-simple">About</Link>
-            <Link to="/research" className="link-simple">Research</Link>
-            <Link to="/contact" className="link-simple">Contact</Link>
+            <Link to="/about" className="link-professional text-muted-foreground">About</Link>
+            <Link to="/research" className="link-professional text-muted-foreground">Research</Link>
+            <Link to="/contact" className="link-professional text-muted-foreground">Contact</Link>
             <a 
               href="https://github.com/Stealth-Market-Microstructure-Group"
               target="_blank"
               rel="noopener noreferrer"
-              className="link-simple"
+              className="link-professional text-muted-foreground"
             >
               GitHub
             </a>
@@ -25,7 +25,7 @@ export function Footer() {
               href="https://www.linkedin.com/company/smmg-research"
               target="_blank"
               rel="noopener noreferrer"
-              className="link-simple"
+              className="link-professional text-muted-foreground"
             >
               LinkedIn
             </a>
