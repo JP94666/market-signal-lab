@@ -87,14 +87,14 @@ const Index = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`link-simple text-sm ${item.highlight ? 'font-semibold' : ''}`}
+                    className={`link-professional text-sm ${item.highlight ? 'font-semibold' : ''}`}
                   >
                     {item.title}
                   </a>
                 </li>
               ))}
             </ul>
-            <Link to="/research" className="link-simple text-sm mt-4 inline-block">
+            <Link to="/research" className="link-professional text-sm mt-4 inline-block text-muted-foreground hover:text-accent">
               View all research →
             </Link>
           </div>
@@ -117,14 +117,14 @@ const Index = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`link-simple text-sm ${item.highlight ? 'font-semibold' : ''}`}
+                    className={`link-professional text-sm ${item.highlight ? 'font-semibold' : ''}`}
                   >
                     {item.title}
                   </a>
                 </li>
               ))}
             </ul>
-            <Link to="/articles" className="link-simple text-sm mt-4 inline-block">
+            <Link to="/articles" className="link-professional text-sm mt-4 inline-block text-muted-foreground hover:text-accent">
               View all articles →
             </Link>
           </div>
@@ -144,7 +144,7 @@ const Index = () => {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="link-simple text-sm"
+                    className="link-professional text-sm"
                   >
                     {item.title}
                   </a>
@@ -155,7 +155,7 @@ const Index = () => {
               href="https://github.com/Stealth-Market-Microstructure-Group"
               target="_blank"
               rel="noopener noreferrer"
-              className="link-simple text-sm mt-4 inline-block"
+              className="link-professional text-sm mt-4 inline-block text-muted-foreground hover:text-accent"
             >
               View GitHub →
             </a>
@@ -170,7 +170,7 @@ const Index = () => {
             on order flow, agent interaction, and inventory dynamics while preserving strict 
             price–time priority and causal event ordering.
           </p>
-          <Link to="/about" className="link-simple text-sm mt-4 inline-block">
+          <Link to="/about" className="link-professional text-sm mt-4 inline-block text-muted-foreground hover:text-accent">
             Learn more about us →
           </Link>
         </section>

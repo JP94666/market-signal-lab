@@ -125,7 +125,21 @@
     background-color: hsl(var(--header-bg));
   }
 
-  /* Simple link style like Nanex */
+  /* Professional embedded link style (Hindenburg-inspired) 
+     - Blends with page content
+     - Uses accent color on hover
+     - No underline, clean and native look */
+  .link-professional {
+    color: hsl(var(--foreground));
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .link-professional:hover {
+    color: hsl(var(--accent));
+  }
+
+  /* Legacy simple link style (keeping for reference/fallback) */
   .link-simple {
     color: hsl(var(--link-blue));
     text-decoration: underline;

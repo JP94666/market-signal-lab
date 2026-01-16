@@ -54,7 +54,7 @@ const Articles = () => {
                     href={article.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`link-simple ${article.highlight ? 'font-semibold' : ''}`}
+                    className={`link-professional ${article.highlight ? 'font-semibold' : ''}`}
                   >
                     {article.title}
                   </a>
